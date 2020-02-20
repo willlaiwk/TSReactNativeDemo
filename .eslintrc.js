@@ -2,12 +2,18 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   plugins: [
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'prettier'
   ],
   extends: [
-    '@react-native-community'
+    '@react-native-community',
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
   rules: {
-    "comma-dangle": ["error", "never"]
+    "@typescript-eslint/no-use-before-define": ["error", { "variables": false }]
   }
 };
