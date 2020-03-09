@@ -1,14 +1,18 @@
-import { PayloadAction } from '../../types'
+import { Action, PayloadAction } from '../../types'
 import actionTypesCreator from '../../utils/action-types-creator'
+import { Article } from '../../types/Models'
+/**
+ * Module's name
+ */
+export const MODULE_NAME = 'News'
 
-const MODULE_NAME = 'News'
-
+// Define ActionTypes
 enum ESagaActionTypes {
-  FETCH_ARTICLES
+  FETCH_HEAD_LINES
 }
 
 enum EReducerActionTypes {
-  FETCH_ARTICLES_SUCCESS
+  SET_HEAD_LINES
 }
 
 export const SagaActionTypes = actionTypesCreator(
@@ -28,23 +32,19 @@ export const ActionTypes = {
   REDUCER: ReducerActionTypes
 }
 
-type FetchNewsListAction = PayloadAction<
-  typeof SagaActionTypes.FETCH_ARTICLES,
+export type FetchHeadLinesAction = Action<
+  typeof SagaActionTypes.FETCH_HEAD_LINES
+>
+
+export type FetchNewsListSuccessAction = PayloadAction<
+  typeof ReducerActionTypes.SET_HEAD_LINES,
   {
-    page: number
+    articles: Article[]
   }
 >
 
-type FetchNewsListSuccessAction = PayloadAction<
-  typeof ReducerActionTypes.FETCH_ARTICLES_SUCCESS,
-  {
-    page: number
-    newsList: object[]
-  }
->
-
-export type NewsActions = FetchNewsListAction | FetchNewsListSuccessAction
+export type NewsActions = FetchHeadLinesAction | FetchNewsListSuccessAction
 
 export interface NewsState {
-  articles: object[]
+  articles: Article[]
 }

@@ -5,13 +5,13 @@ const initialState: NewsState = {
   articles: []
 }
 
-const newsReducer: Reducer<NewsState, NewsActions> = (
-  state = initialState,
-  action
-) => {
+const newsReducer: Reducer<NewsState, NewsActions> = (state = initialState, action) => {
   switch (action.type) {
-    case ReducerActionTypes.FETCH_ARTICLES_SUCCESS: {
-      return state
+    case ReducerActionTypes.SET_HEAD_LINES: {
+      return {
+        ...state,
+        articles: action.payload.articles
+      }
     }
 
     default: {
