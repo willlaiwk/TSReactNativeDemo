@@ -15,5 +15,12 @@ module.exports = {
   ],
   rules: {
     "@typescript-eslint/no-use-before-define": ["error", { "variables": false }]
-  }
+  },
+  // "settings": {
+  //   "import/resolver": {
+  //     "node": {
+  //       "moduleDirectory": ["node_modules", "src/"]
+  //     }
+  //   }
+  // }
 };

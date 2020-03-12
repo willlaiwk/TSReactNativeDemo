@@ -7,8 +7,3 @@ export type Action<T> = Redux.Action<T>
 export interface PayloadAction<T = any, P = any> extends Redux.Action<T> {
   payload: P
 }
-
-export type Reducer<
-  S = any,
-  A extends Redux.Action = Redux.AnyAction
-> = Redux.Reducer<S, A>

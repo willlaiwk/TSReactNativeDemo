@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Article } from '../types/Models'
+import Article from '../models/Article'
 import { NEWS_API_KEY } from '../config'
 
 type BaseResponse = {

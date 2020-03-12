@@ -1,4 +1,4 @@
-export type Article = {
+type Article = {
   source: {
     id: string
     name: string
@@ -11,3 +11,5 @@ export type Article = {
   publishedAt: string
   content: string
 }
+
+export default Article

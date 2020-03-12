@@ -1,11 +1,20 @@
-import { createStore, applyMiddleware, Middleware } from 'redux'
+import { createStore, applyMiddleware, Middleware, Action, Reducer, Store, PreloadedState } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import rootReducer from '../rootReducer'
-import rootSaga from '../rootSaga'
 
-function configureStore(preloadedState = undefined) {
+function configureStore<S, A extends Action>(rootReducer: Reducer<S, A>, rootSaga: any): Store<S, A>
+function configureStore<S, A extends Action>(
+  rootReducer: Reducer<S, A>,
+  rootSaga: any,
+  preloadedState: PreloadedState<S>
+): Store<S, A>
+
+function configureStore<S, A extends Action>(
+  rootReducer: Reducer<S, A>,
+  rootSaga: any,
+  preloadedState?: PreloadedState<S>
+): Store<S, A> {
   /**
    * Middlewares
    */
@@ -22,9 +31,7 @@ function configureStore(preloadedState = undefined) {
    */
   const middlewareEnhancer = applyMiddleware(...middlewares)
 
-  const composedEnhancer = __DEV__
-    ? composeWithDevTools(middlewareEnhancer)
-    : middlewareEnhancer
+  const composedEnhancer = __DEV__ ? composeWithDevTools(middlewareEnhancer) : middlewareEnhancer
 
   /**
    * Create Store & Run Saga
