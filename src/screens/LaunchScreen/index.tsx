@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, StatusBar, Platform } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import Brand from './Brand'
+import Brand from './components/Brand'
 
 const isAndroid = Platform.OS === 'android'
 
