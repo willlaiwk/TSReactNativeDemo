@@ -21,10 +21,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({ title }) => {
   return (
     <View style={containerStyle}>
       {isAndroid && <StatusBar backgroundColor="#fff" barStyle="dark-content" />}
-      <View style={styles.leftToolbar}>
-        {/* TODO: leftToolbar content */}
-        <Text style={styles.title} />
-      </View>
+      {/* TODO: leftToolbar content */}
+      <View style={styles.leftToolbar} />
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{title}</Text>
       </View>
