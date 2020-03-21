@@ -1,36 +1,49 @@
 import React, { useEffect } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { useSafeArea } from 'react-native-safe-area-context'
 import { fetchHeadLines } from './actions'
 import { RootState } from 'src/store'
+import Header from 'src/components/Header'
 import Item from './components/HeadLine'
 
 const NewsScreen: React.FunctionComponent = () => {
   const articles = useSelector((state: RootState) => state.screens.news.articles)
+  const insets = useSafeArea()
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchHeadLines())
   }, [dispatch])
 
+  const contentStyle = {
+    ...styles.content,
+    paddingLeft: insets.left,
+    paddingRight: insets.right
+  }
+
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <FlatList
-        data={articles}
-        renderItem={({ item }) => <Item article={item} />}
-        keyExtractor={(item, index) => `${index}`}
-      />
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Header title="News" />
+      <View style={contentStyle}>
+        <FlatList
+          data={articles}
+          renderItem={({ item }) => <Item article={item} />}
+          keyExtractor={(item, index) => `${index}`}
+        />
+      </View>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
+  container: {
+    flex: 1
+  },
+  content: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff'
+    alignItems: 'center'
   }
 })
 
