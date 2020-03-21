@@ -11,7 +11,7 @@ export type ChangeThemeAction = PayloadAction<
 
 export type ThemeActions = ChangeThemeAction
 
-export const fetchHeadLines = (themeType: ThemeType): ChangeThemeAction => ({
+export const changeTheme = (themeType: ThemeType): ChangeThemeAction => ({
   type: ActionTypes.REDUCER.CHANGE_THEME,
   payload: { themeType }
 })
