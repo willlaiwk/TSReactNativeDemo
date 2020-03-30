@@ -1,10 +1,11 @@
 import { createReducerActionTypes } from 'src/utils/actionTypesCreator'
 
+export const MODULE_NAME = 'AppStyle'
+
 enum EReducerActionTypes {
+  RESET,
   CHANGE_THEME
 }
-
-export const MODULE_NAME = 'Theme'
 
 export const ReducerActionTypes = createReducerActionTypes(EReducerActionTypes, MODULE_NAME)
 

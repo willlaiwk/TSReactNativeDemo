@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Text, StyleSheet, Platform, StatusBar } from 'react-native'
-import { useSafeArea } from 'react-native-safe-area-context'
+import { View, Text, Platform, StatusBar, ViewStyle, TextStyle } from 'react-native'
+import { appStyles, useStyle, CreateStyle } from 'src/shared/app-style'
 
 const isAndroid = Platform.OS === 'android'
 
@@ -9,17 +9,10 @@ interface HeaderProps {
 }
 
 const Header: React.FunctionComponent<HeaderProps> = ({ title }) => {
-  const insets = useSafeArea()
-  const containerStyle = {
-    ...styles.container,
-    paddingTop: insets.top,
-    paddingLeft: insets.left,
-    paddingRight: insets.right,
-    height: insets.top + 44
-  }
+  const styles = useStyle(createStyle)
 
   return (
-    <View style={containerStyle}>
+    <View style={styles.container}>
       {isAndroid && <StatusBar backgroundColor="#fff" barStyle="dark-content" />}
       {/* TODO: leftToolbar content */}
       <View style={styles.leftToolbar} />
@@ -32,12 +25,24 @@ const Header: React.FunctionComponent<HeaderProps> = ({ title }) => {
   )
 }
 
-const styles = StyleSheet.create({
+interface Style {
+  container: ViewStyle
+  titleWrapper: ViewStyle
+  leftToolbar: ViewStyle
+  rightToolbar: ViewStyle
+  title: TextStyle
+}
+
+const createStyle: CreateStyle<Style> = (theme, insets) => ({
   container: {
-    backgroundColor: '#fff',
     flexDirection: 'row',
     borderColor: '#ddd',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    paddingTop: insets.top,
+    paddingLeft: insets.left,
+    paddingRight: insets.right,
+    height: insets.top + 44,
+    backgroundColor: theme.styles.color.background
   },
   titleWrapper: {
     flex: 1,

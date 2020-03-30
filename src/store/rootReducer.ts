@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import newsReducer from '../screens/NewsScreen/reducer'
-import themeReducer from '../shared/theme/reducer'
+import appStyleReducer from '../shared/app-style/reducer'
 
 /**
  * State of each screen
@@ -15,7 +15,7 @@ const screensReducers = combineReducers({
  * All screens are accessible.
  */
 const sharedReducers = combineReducers({
-  theme: themeReducer
+  appStyle: appStyleReducer
 })
 
 const rootReducer = combineReducers({
